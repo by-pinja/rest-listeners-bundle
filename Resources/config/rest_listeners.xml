@@ -12,7 +12,7 @@
         </service>
 
         <service id="rest_listeners.exception_listener" class="Protacon\Bundle\RestListenersBundle\EventListener\ExceptionListener">
-            <argument type="service" id="security.token_storage" />
+            <argument type="service" id="security.token_storage" on-invalid="null" />
             <tag name="kernel.event_listener" event="kernel.exception" method="onKernelException" />
         </service>
     </services>
