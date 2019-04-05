@@ -6,4 +6,4 @@ services:
       context: .
     entrypoint: 'tail -f /dev/null'
     volumes:
-      - ./:/var/rest-listeners-bundle
+      - ./:/rest-listeners-bundle:cached

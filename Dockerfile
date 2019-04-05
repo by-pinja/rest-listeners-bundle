@@ -8,12 +8,12 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-install -j$(nproc) zip
 
-WORKDIR /test-tools-bundle
+WORKDIR /rest-listeners-bundle
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
-ADD composer.json  ./
-
-RUN composer install
+ENV COMPOSER_ALLOW_SUPERUSER 1
 
 ADD . .
+
+RUN composer install
