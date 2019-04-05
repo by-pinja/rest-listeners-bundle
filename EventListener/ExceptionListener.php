@@ -5,21 +5,35 @@ namespace Protacon\Bundle\RestListenersBundle\EventListener;
 
 use Doctrine\DBAL\DBALException;
 use Doctrine\ORM\ORMException;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
+use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Throwable;
+use function class_exists;
+use function get_class;
+use function json_encode;
 
-class ExceptionListener
+class ExceptionListener implements EventSubscriberInterface
 {
     private $tokenStorage;
 
     private $environment;
+
+    public static function getSubscribedEvents(): array
+    {
+        return [
+            KernelEvents::EXCEPTION => [
+                ['onKernelException', -100],
+            ],
+        ];
+    }
 
     public function __construct(?TokenStorageInterface $tokenStorage)
     {
@@ -31,14 +45,15 @@ class ExceptionListener
     {
         // Get exception from current event
         $exception = $event->getException();
-        
+
         // Create new response
         $response = new Response();
         $response->headers->set('Content-Type', 'application/json');
         $response->setStatusCode($this->getStatusCode($exception));
         $response->setContent(json_encode($this->getErrorMessage($exception, $response)));
-        
+
         // Send the modified response object to the event
+        $event->allowCustomResponseCode();
         $event->setResponse($response);
     }
 
