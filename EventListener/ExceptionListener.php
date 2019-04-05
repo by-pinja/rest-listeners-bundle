@@ -21,7 +21,7 @@ class ExceptionListener
 
     private $environment;
 
-    public function __construct(TokenStorageInterface $tokenStorage)
+    public function __construct(?TokenStorageInterface $tokenStorage)
     {
         $this->tokenStorage = $tokenStorage;
         $this->environment = $_SERVER['APP_ENV'];
@@ -44,11 +44,13 @@ class ExceptionListener
 
     private function getStatusCode(Throwable $exception): int
     {
-        // Get current token, and determine if request is made from logged in user or not
-        $token = $this->tokenStorage->getToken();
-        $isUser = !($token === null || $token instanceof AnonymousToken);
+        if ($this->tokenStorage !== null) {
+            // Get current token, and determine if request is made from logged in user or not
+            $token = $this->tokenStorage->getToken();
+            $isUser = !($token === null || $token instanceof AnonymousToken);
+        }
 
-        return $this->determineStatusCode($exception, $isUser);
+        return $this->determineStatusCode($exception, $isUser ?? false);
     }
 
     private function getErrorMessage(Throwable $exception, Response $response): array
