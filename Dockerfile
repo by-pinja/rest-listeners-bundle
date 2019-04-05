@@ -16,4 +16,6 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 
 ADD . .
 
-RUN composer install
+RUN chmod +x docker-entrypoint.sh
+
+ENTRYPOINT ["/rest-listeners-bundle/docker-entrypoint.sh"]

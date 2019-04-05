@@ -4,6 +4,6 @@ services:
   app:
     build:
       context: .
-    entrypoint: 'tail -f /dev/null'
+    command: 'tail -f /dev/null'
     volumes:
       - ./:/rest-listeners-bundle:cached
