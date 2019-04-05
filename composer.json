@@ -1,0 +1,35 @@
+{
+    "name": "protacon/rest-listeners-bundle",
+    "description": "Generic REST listeners bundle for Symfony projects",
+    "type": "symfony-bundle",
+    "homepage": "https://www.protacon.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tarmo Leppänen",
+            "email": "tarmo.leppanen@protacon.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "ext-json": "*",
+        "symfony/config": "^4.0",
+        "symfony/dependency-injection": "^4.0"
+    },
+    "require-dev": {},
+    "autoload": {
+        "psr-4": { "Protacon\\Bundle\\RestListenerBundle\\": "" },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "suggest": {},
+    "minimum-stability": "stable",
+    "extra": {}
+}
