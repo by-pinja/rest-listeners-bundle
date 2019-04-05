@@ -18,7 +18,7 @@
     },
     "require-dev": {},
     "autoload": {
-        "psr-4": { "Protacon\\Bundle\\RestListenerBundle\\": "" },
+        "psr-4": { "Protacon\\Bundle\\RestListenersBundle\\": "" },
         "exclude-from-classmap": [
             "/Tests/"
         ]

@@ -1,6 +1,6 @@
 <?php
 
-namespace Protacon\Bundle\RestListenerBundle;
+namespace Protacon\Bundle\RestListenersBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

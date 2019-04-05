@@ -1,6 +1,6 @@
 <?php
 
-namespace Protacon\Bundle\RestListenerBundle\DependencyInjection;
+namespace Protacon\Bundle\RestListenersBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
