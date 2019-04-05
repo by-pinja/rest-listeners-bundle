@@ -10,5 +10,10 @@
         <service id="rest_listeners.body_listener" class="Protacon\Bundle\RestListenersBundle\EventListener\BodyListener">
             <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" priority="10" />
         </service>
+
+        <service id="rest_listeners.exception_listener" class="Protacon\Bundle\RestListenersBundle\EventListener\ExceptionListener">
+            <argument type="service" id="security.token_storage" />
+            <tag name="kernel.event_listener" event="kernel.exception" method="onKernelException" />
+        </service>
     </services>
 </container>
