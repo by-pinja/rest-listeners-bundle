@@ -10,6 +10,7 @@ TODO
   * [Installation](#installation)
   * [Usage](#usage)
   * [Development](#development)
+    * [Docker](#docker)
     * [IDE](#ide)
     * [Testing](#testing)
   * [Authors](#authors)
@@ -18,28 +19,35 @@ TODO
 ## Requirements
 
 * PHP 7.2 or higher
+* [Symfony 4.x](https://symfony.com/)
 * [Composer](https://getcomposer.org/)
 
 ## Installation
 
 The recommended way to install this library is with Composer. Composer is a dependency management 
 tool for PHP that allows you to declare the dependencies your project needs and installs them into 
-your project.
+your project. You can add this library as a dependency to your Symfony project using following command:
 
 ```bash
-# Install Composer
-curl -sS https://getcomposer.org/installer | php
-```
-
-You can add this library as a dependency to your project using following command:
-
-```bash
-composer require protacon/rest-listener-bundle
+composer require protacon/rest-listeners-bundle
 ```
 
 ## Development
 
 * [PSR-2: Coding Style Guide](http://www.php-fig.org/psr/psr-2/)
+
+### Docker
+
+Bundle provides a Dockerfile and docker-compose configuration to develop the bundle in the container with 
+the all tools necessary installed
+
+````bash
+docker-compose up -d
+docker-compose exec app /bin/bash
+````
+
+After this your IDE (see next chapter) should see all the dependencies of this bundle and you can start to
+development it.
 
 ### IDE
 
@@ -53,31 +61,21 @@ you could use.
 * [Sublime Text](https://www.sublimetext.com/)
 * [Visual Studio Code](https://code.visualstudio.com/)
 
-If you're using [PhpStorm](https://www.jetbrains.com/phpstorm/) following links
-will help you to get things rolling.
+If you're using [PhpStorm](https://www.jetbrains.com/phpstorm/) following links will help you to get things 
+rolling.
 
 * [Using PHP Code Sniffer Tool](https://www.jetbrains.com/help/phpstorm/10.0/using-php-code-sniffer-tool.html)
 * [PHP Code Sniffer in PhpStorm](https://confluence.jetbrains.com/display/PhpStorm/PHP+Code+Sniffer+in+PhpStorm)
 
 ### Testing
 
-Library uses [PHPUnit](https://phpunit.de/) for testing. You can run all tests
-by following command:
+Library uses [PHPUnit](https://phpunit.de/) for testing. You can run all tests by following command:
 
 ```bash
-./vendor/bin/phpunit
+docker-compose exec app ./vendor/bin/phpunit
 ```
 
 Or you could easily configure your IDE to run those for you.
-
-### Environment
-
-Bundle provides a Dockerfile and docker-compose configuration to develop the bundle in the container with the all tools necessary installed
-
-````bash
-docker-compose up -d
-docker-compose exec app /bin/bash
-````
 
 ## Authors
 

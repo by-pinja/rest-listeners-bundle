@@ -15,12 +15,16 @@
         "ext-json": "*",
         "symfony/config": "^4.0",
         "symfony/dependency-injection": "^4.0",
-        "symfony/event-dispatcher": "^4.2",
-        "symfony/http-foundation": "^4.2",
-        "symfony/http-kernel": "^4.2",
-        "symfony/security-core": "^4.2"
+        "symfony/event-dispatcher": "^4.0",
+        "symfony/http-foundation": "^4.0",
+        "symfony/http-kernel": "^4.0",
+        "symfony/security-core": "^4.0"
     },
-    "require-dev": {},
+    "require-dev": {
+        "codedungeon/phpunit-result-printer": "^0.26.2",
+        "phpunit/phpunit": "^8.1",
+        "roave/security-advisories": "dev-master"
+    },
     "autoload": {
         "psr-4": { "Protacon\\Bundle\\RestListenersBundle\\": "" },
         "exclude-from-classmap": [
