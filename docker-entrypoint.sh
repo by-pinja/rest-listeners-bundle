@@ -10,8 +10,9 @@ set -e
 if [ "$1" = 'tail' ]; then
     composer install
 
-    # Step 8
     chmod -R o+s+w /rest-listeners-bundle
+
+    echo "Docker container running..."
 fi
 
 exec "$@"
