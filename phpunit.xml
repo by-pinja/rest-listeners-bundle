@@ -3,12 +3,13 @@
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/8.1/phpunit.xsd"
          bootstrap="vendor/autoload.php"
          executionOrder="depends,defects"
-         forceCoversAnnotation="true"
-         beStrictAboutCoversAnnotation="true"
+         forceCoversAnnotation="false"
+         beStrictAboutCoversAnnotation="false"
          beStrictAboutOutputDuringTests="true"
          beStrictAboutTodoAnnotatedTests="true"
          verbose="true"
-         printerClass="Codedungeon\PHPUnitPrettyResultPrinter\Printer">
+         printerClass="Codedungeon\PHPUnitPrettyResultPrinter\Printer"
+>
     <testsuites>
         <testsuite name="default">
             <directory suffix="Test.php">Tests</directory>
@@ -18,6 +19,18 @@
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">.</directory>
+            <exclude>
+                <directory>build</directory>
+                <directory>Tests</directory>
+                <directory>vendor</directory>
+            </exclude>
         </whitelist>
     </filter>
+
+    <logging>
+        <log type="coverage-html" target="build/report" lowUpperBound="55" highLowerBound="90" />
+        <log type="coverage-clover" target="build/logs/clover.xml" />
+        <log type="coverage-text" target="php://stdout" showOnlySummary="true" />
+        <log type="junit" target="build/logs/junit.xml" />
+    </logging>
 </phpunit>
